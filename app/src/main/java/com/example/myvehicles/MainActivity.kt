@@ -25,7 +25,12 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val data = mutableListOf("Car 1", "Car 2", "Car 3", "Car 4", "Car 5")
+        val data = mutableListOf(
+            Vehicle("Bessie", "Ford", "Focus", "2014"),
+            Vehicle("Junk", "Chevrolet", "Blazer", "1999"),
+            Vehicle("Old Trusty", "Chevrolet", "Trail Blazer", "2023")
+        )
+
         adapter = MyAdapter(data)
         recyclerView.adapter = adapter
 

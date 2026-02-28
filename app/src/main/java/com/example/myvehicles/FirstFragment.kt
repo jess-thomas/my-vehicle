@@ -36,9 +36,12 @@ class FirstFragment : Fragment() {
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val data = mutableListOf(
-            "Item 1", "Item 2", "Item 3", "Item 4", "Item 5"
+        val data: MutableList<Vehicle> =mutableListOf(
+            Vehicle("Bessie", "Ford", "Focus", "2014"),
+            Vehicle("Junk", "Chevrolet", "Blazer", "1999"),
+            Vehicle("Old Trusty", "Chevrolet", "Trail Blazer", "2023")
         )
+
 
         adapter = MyAdapter(data)
         recyclerView.adapter = adapter
