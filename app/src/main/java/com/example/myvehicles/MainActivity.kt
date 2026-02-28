@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val data = mutableListOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+        val data = mutableListOf("Car 1", "Car 2", "Car 3", "Car 4", "Car 5")
         adapter = MyAdapter(data)
         recyclerView.adapter = adapter
 
