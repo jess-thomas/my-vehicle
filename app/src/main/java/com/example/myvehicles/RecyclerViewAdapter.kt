@@ -7,11 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 // Adapter for a list of Vehicles
-class MyAdapter(private val items: MutableList<Vehicle>) :
+class MyAdapter(private var items: MutableList<Vehicle>) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textViewTitle: TextView = itemView.findViewById(R.id.itemTextNickname)
+        val textView: TextView = itemView.findViewById(R.id.itemTextNickname)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -22,7 +22,7 @@ class MyAdapter(private val items: MutableList<Vehicle>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val vehicle = items[position]
-        holder.textViewTitle.text = "${vehicle.nickname}: ${vehicle.year} ${vehicle.make} ${vehicle.model}"
+        holder.textView.text = "${vehicle.nickname}: ${vehicle.year} ${vehicle.make} ${vehicle.model}"
     }
 
     override fun getItemCount(): Int = items.size
@@ -32,5 +32,10 @@ class MyAdapter(private val items: MutableList<Vehicle>) :
             items.removeAt(position)
             notifyItemRemoved(position)
         }
+    }
+
+    fun updateData(newItems: List<Vehicle>) {
+        items = newItems.toMutableList()
+        notifyDataSetChanged()
     }
 }

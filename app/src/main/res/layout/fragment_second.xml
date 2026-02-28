@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".SecondFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <EditText
+        android:id="@+id/editNickname"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:hint="Nickname"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/editMake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Make"
+        app:layout_constraintTop_toBottomOf="@id/editNickname" />
 
-        <TextView
-            android:id="@+id/textview_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Second View"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+    <EditText
+        android:id="@+id/editModel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Model"
+        app:layout_constraintTop_toBottomOf="@id/editMake" />
+
+    <EditText
+        android:id="@+id/editYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Year"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/editModel" />
+
+    <Button
+        android:id="@+id/btnAddVehicle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Add Vehicle"
+        app:layout_constraintTop_toBottomOf="@id/editYear" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

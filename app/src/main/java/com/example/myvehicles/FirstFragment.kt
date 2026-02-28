@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ class FirstFragment : Fragment() {
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: MyAdapter
+    private val viewModel: VehicleViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,15 +38,12 @@ class FirstFragment : Fragment() {
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val data: MutableList<Vehicle> =mutableListOf(
-            Vehicle("Bessie", "Ford", "Focus", "2014"),
-            Vehicle("Junk", "Chevrolet", "Blazer", "1999"),
-            Vehicle("Old Trusty", "Chevrolet", "Trail Blazer", "2023")
-        )
-
-
-        adapter = MyAdapter(data)
+        adapter = MyAdapter(mutableListOf())
         recyclerView.adapter = adapter
+
+        viewModel.vehicles.observe(viewLifecycleOwner) { vehicles ->
+            adapter.updateData(vehicles)
+        }
 
         val itemTouchHelper = ItemTouchHelper(object :
             ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -56,7 +55,7 @@ class FirstFragment : Fragment() {
             ): Boolean = false
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                adapter.removeItem(viewHolder.bindingAdapterPosition)
+                viewModel.removeVehicle(viewHolder.bindingAdapterPosition)
             }
 
             override fun onChildDraw(
