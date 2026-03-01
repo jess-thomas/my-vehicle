@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -46,9 +47,11 @@ class FirstFragment : Fragment() {
         viewModel.vehicles.observe(viewLifecycleOwner) { vehicles ->
             if (vehicles.isEmpty()) {
                 binding.recyclerView.visibility = View.GONE
+                binding.searchView.visibility = View.GONE
                 binding.emptyState.visibility = View.VISIBLE
             } else {
                 binding.recyclerView.visibility = View.VISIBLE
+                binding.searchView.visibility = View.VISIBLE
                 binding.emptyState.visibility = View.GONE
                 adapter.updateData(vehicles)
             }
@@ -58,6 +61,17 @@ class FirstFragment : Fragment() {
             val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
             viewPager?.currentItem = 1
         }
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter(newText ?: "")
+                return true
+            }
+        })
 
         val itemTouchHelper = ItemTouchHelper(object :
             ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {

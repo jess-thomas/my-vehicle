@@ -9,13 +9,23 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageGarageHeader"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:layout_marginTop="8dp"
         android:layout_marginHorizontal="16dp"
         android:scaleType="centerCrop"
         android:src="@drawable/garage_header"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/RoundedCorners" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/vintage_off_white"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search your cars..."
+        app:layout_constraintTop_toBottomOf="@id/imageGarageHeader" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -25,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageGarageHeader" />
+        app:layout_constraintTop_toBottomOf="@id/searchView" />
 
     <LinearLayout
         android:id="@+id/emptyState"

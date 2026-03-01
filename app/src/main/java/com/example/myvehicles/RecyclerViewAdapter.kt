@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
-class MyAdapter(private var items: MutableList<Vehicle>) :
+class MyAdapter(private var fullList: MutableList<Vehicle>) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-    // Track which items are expanded
+    private var displayList: MutableList<Vehicle> = fullList.toMutableList()
     private val expandedPositions = mutableSetOf<Int>()
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -42,13 +43,12 @@ class MyAdapter(private var items: MutableList<Vehicle>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val vehicle = items[position]
+        val vehicle = displayList[position]
         holder.nickname.text = vehicle.nickname
         holder.year.text = "Year: ${vehicle.year}"
         holder.maker.text = "Make: ${vehicle.make}"
         holder.model.text = "Model: ${vehicle.model}"
 
-        // Show/hide details based on expanded state
         holder.detailsContainer.visibility = if (expandedPositions.contains(position)) {
             View.VISIBLE
         } else {
@@ -56,18 +56,39 @@ class MyAdapter(private var items: MutableList<Vehicle>) :
         }
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = displayList.size
 
     fun removeItem(position: Int) {
-        if (position in items.indices) {
-            items.removeAt(position)
-            expandedPositions.remove(position) // Clean up expanded state
+        if (position in displayList.indices) {
+            val vehicle = displayList[position]
+            displayList.removeAt(position)
+            fullList.remove(vehicle)
+            expandedPositions.remove(position)
             notifyItemRemoved(position)
         }
     }
 
     fun updateData(newItems: List<Vehicle>) {
-        items = newItems.toMutableList()
+        fullList = newItems.toMutableList()
+        displayList = fullList.toMutableList()
+        notifyDataSetChanged()
+    }
+
+    fun filter(query: String) {
+        displayList = if (query.isEmpty()) {
+            fullList.toMutableList()
+        } else {
+            val resultList = mutableListOf<Vehicle>()
+            for (vehicle in fullList) {
+                if (vehicle.nickname.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT)) ||
+                    vehicle.make.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT)) ||
+                    vehicle.model.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT))
+                ) {
+                    resultList.add(vehicle)
+                }
+            }
+            resultList
+        }
         notifyDataSetChanged()
     }
 }
