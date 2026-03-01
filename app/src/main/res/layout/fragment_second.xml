@@ -52,6 +52,7 @@
                     android:hint="Nickname"
                     android:importantForAutofill="no"
                     android:inputType="textCapWords"
+                    android:paddingHorizontal="16dp"
                     android:paddingVertical="12dp"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -77,6 +78,7 @@
                     android:hint="Make"
                     android:importantForAutofill="no"
                     android:inputType="textCapWords"
+                    android:paddingHorizontal="16dp"
                     android:paddingVertical="12dp"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -102,6 +104,7 @@
                     android:hint="Model"
                     android:importantForAutofill="no"
                     android:inputType="textCapWords"
+                    android:paddingHorizontal="16dp"
                     android:paddingVertical="12dp"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -127,6 +130,7 @@
                     android:hint="Year"
                     android:importantForAutofill="no"
                     android:inputType="number"
+                    android:paddingHorizontal="16dp"
                     android:paddingVertical="12dp"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
