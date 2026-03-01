@@ -1,7 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme for Night mode, but forced to Vintage colors -->
     <style name="Base.Theme.MyVehicles" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Main theme colors (same as light mode to keep it static) -->
+        <item name="colorPrimary">@color/vintage_red</item>
+        <item name="colorOnPrimary">@color/vintage_off_white</item>
+        <item name="android:windowBackground">@color/vintage_background</item>
+        <item name="colorSurface">@color/vintage_off_white</item>
+        <item name="colorOnSurface">@color/vintage_dark</item>
+        <item name="colorSecondary">@color/vintage_orange</item>
+        <item name="colorOnSecondary">@color/vintage_off_white</item>
+
+        <!-- Status bar and navigation bar -->
+        <item name="android:statusBarColor">@color/vintage_background</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>
