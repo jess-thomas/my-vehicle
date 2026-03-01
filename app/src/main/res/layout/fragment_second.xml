@@ -7,41 +7,54 @@
     android:padding="16dp"
     tools:context=".SecondFragment">
 
-    <EditText
-        android:id="@+id/editNickname"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nickname"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/editMake"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Make"
-        app:layout_constraintTop_toBottomOf="@id/editNickname" />
+        <EditText
+            android:id="@+id/editNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nickname"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords" />
 
-    <AutoCompleteTextView
-        android:id="@+id/editModel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Model"
-        app:layout_constraintTop_toBottomOf="@id/editMake" />
+        <EditText
+            android:id="@+id/editMake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Make"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords" />
 
-    <EditText
-        android:id="@+id/editYear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Year"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/editModel" />
+        <AutoCompleteTextView
+            android:id="@+id/editModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords" />
 
-    <Button
-        android:id="@+id/btnAddVehicle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Add Vehicle"
-        app:layout_constraintTop_toBottomOf="@id/editYear" />
+        <EditText
+            android:id="@+id/editYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Year"
+            android:importantForAutofill="no"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnAddVehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Add Vehicle" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
