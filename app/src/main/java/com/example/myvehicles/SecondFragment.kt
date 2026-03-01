@@ -95,10 +95,10 @@ class SecondFragment : Fragment() {
     }
 
     private fun clearInputs() {
-        binding.editNickname.text.clear()
-        binding.editMake.text.clear()
-        binding.editModel.text.clear()
-        binding.editYear.text.clear()
+        binding.editNickname.text?.clear()
+        binding.editMake.text?.clear()
+        binding.editModel.text?.clear()
+        binding.editYear.text?.clear()
     }
 
     override fun onDestroyView() {
