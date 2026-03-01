@@ -3,8 +3,19 @@ package com.example.myvehicles
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class VehicleViewModel : ViewModel() {
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("https://vpic.nhtsa.dot.gov/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val apiService = retrofit.create(VehicleApiService::class.java)
+
     private val _vehicles = MutableLiveData<MutableList<Vehicle>>(
         mutableListOf(
             Vehicle("Bessie", "Ford", "Focus", "2014"),
@@ -16,6 +27,9 @@ class VehicleViewModel : ViewModel() {
 
     private val _editingVehicle = MutableLiveData<Pair<Int, Vehicle>?>()
     val editingVehicle: LiveData<Pair<Int, Vehicle>?> = _editingVehicle
+
+    private val _models = MutableLiveData<List<String>>()
+    val models: LiveData<List<String>> = _models
 
     fun addVehicle(vehicle: Vehicle) {
         val currentList = _vehicles.value ?: mutableListOf()
@@ -45,6 +59,18 @@ class VehicleViewModel : ViewModel() {
             currentList[position] = vehicle
             _vehicles.value = currentList
             _editingVehicle.value = null
+        }
+    }
+
+    fun fetchModelsForMake(make: String) {
+        viewModelScope.launch {
+            try {
+                val response = apiService.getModelsForMake(make)
+                val modelNames = response.Results.map { it.Model_Name }
+                _models.value = modelNames
+            } catch (e: Exception) {
+                _models.value = emptyList()
+            }
         }
     }
 }
