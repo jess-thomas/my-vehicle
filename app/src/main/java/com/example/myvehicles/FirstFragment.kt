@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.example.myvehicles.databinding.FragmentFirstBinding
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
@@ -43,7 +44,19 @@ class FirstFragment : Fragment() {
         recyclerView.adapter = adapter
 
         viewModel.vehicles.observe(viewLifecycleOwner) { vehicles ->
-            adapter.updateData(vehicles)
+            if (vehicles.isEmpty()) {
+                binding.recyclerView.visibility = View.GONE
+                binding.emptyState.visibility = View.VISIBLE
+            } else {
+                binding.recyclerView.visibility = View.VISIBLE
+                binding.emptyState.visibility = View.GONE
+                adapter.updateData(vehicles)
+            }
+        }
+
+        binding.btnAddCarToGetStarted.setOnClickListener {
+            val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
+            viewPager?.currentItem = 1
         }
 
         val itemTouchHelper = ItemTouchHelper(object :
@@ -63,11 +76,9 @@ class FirstFragment : Fragment() {
                     val vehicle = viewModel.vehicles.value?.get(position)
                     viewModel.setEditingVehicle(position, vehicle)
                     
-                    // Switch to the second tab for editing
-                    val viewPager = activity?.findViewById<androidx.viewpager2.widget.ViewPager2>(R.id.viewPager)
+                    val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
                     viewPager?.currentItem = 1
                     
-                    // Reset swipe state
                     adapter.notifyItemChanged(position)
                 }
             }

@@ -16,13 +16,7 @@ class VehicleViewModel : ViewModel() {
 
     private val apiService = retrofit.create(VehicleApiService::class.java)
 
-    private val _vehicles = MutableLiveData<MutableList<Vehicle>>(
-        mutableListOf(
-            Vehicle("Bessie", "Ford", "Focus", "2014"),
-            Vehicle("Junk", "Chevrolet", "Blazer", "1999"),
-            Vehicle("Old Trusty", "Chevrolet", "Trail Blazer", "2023")
-        )
-    )
+    private val _vehicles = MutableLiveData<MutableList<Vehicle>>(mutableListOf())
     val vehicles: LiveData<MutableList<Vehicle>> = _vehicles
 
     private val _editingVehicle = MutableLiveData<Pair<Int, Vehicle>?>()
