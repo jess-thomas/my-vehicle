@@ -11,7 +11,6 @@ class MyPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(
         return when (position) {
             0 -> FirstFragment()
             1 -> SecondFragment()
-            2 -> FindCarsFragment()
             else -> FirstFragment()
         }
     }
