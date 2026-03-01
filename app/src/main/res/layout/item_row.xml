@@ -2,8 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/material_dynamic_primary60"
-    android:backgroundTintMode="add"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -13,23 +11,31 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textViewYear"
+    <LinearLayout
+        android:id="@+id/detailsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <TextView
-        android:id="@+id/textViewMaker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/textViewYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/textViewModel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/textViewMaker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+    </LinearLayout>
 </LinearLayout>

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,7 +47,7 @@ class FirstFragment : Fragment() {
         }
 
         val itemTouchHelper = ItemTouchHelper(object :
-            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -55,7 +56,20 @@ class FirstFragment : Fragment() {
             ): Boolean = false
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.removeVehicle(viewHolder.bindingAdapterPosition)
+                val position = viewHolder.bindingAdapterPosition
+                if (direction == ItemTouchHelper.LEFT) {
+                    viewModel.removeVehicle(position)
+                } else if (direction == ItemTouchHelper.RIGHT) {
+                    val vehicle = viewModel.vehicles.value?.get(position)
+                    viewModel.setEditingVehicle(position, vehicle)
+                    
+                    // Switch to the second tab for editing
+                    val viewPager = activity?.findViewById<androidx.viewpager2.widget.ViewPager2>(R.id.viewPager)
+                    viewPager?.currentItem = 1
+                    
+                    // Reset swipe state
+                    adapter.notifyItemChanged(position)
+                }
             }
 
             override fun onChildDraw(
@@ -70,8 +84,10 @@ class FirstFragment : Fragment() {
                 RecyclerViewSwipeDecorator.Builder(
                     c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive
                 )
-                    .addBackgroundColor(Color.RED)
-                    .addActionIcon(android.R.drawable.ic_menu_delete)
+                    .addSwipeLeftBackgroundColor(Color.RED)
+                    .addSwipeLeftActionIcon(android.R.drawable.ic_menu_delete)
+                    .addSwipeRightBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.holo_blue_light))
+                    .addSwipeRightActionIcon(android.R.drawable.ic_menu_edit)
                     .create()
                     .decorate()
 
