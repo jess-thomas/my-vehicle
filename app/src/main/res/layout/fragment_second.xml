@@ -7,52 +7,125 @@
     android:padding="16dp"
     tools:context=".SecondFragment">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageHeader"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/car_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundedCorners" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="top|center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/imageHeader">
 
-        <EditText
-            android:id="@+id/editNickname"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nickname"
-            android:importantForAutofill="no"
-            android:inputType="textCapWords" />
+            android:layout_marginTop="4dp"
+            app:boxBackgroundColor="@color/vintage_off_white"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false">
 
-        <EditText
-            android:id="@+id/editMake"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editNickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nickname"
+                android:importantForAutofill="no"
+                android:inputType="textCapWords"
+                android:paddingVertical="12dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Make"
-            android:importantForAutofill="no"
-            android:inputType="textCapWords" />
+            android:layout_marginTop="4dp"
+            app:boxBackgroundColor="@color/vintage_off_white"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false">
 
-        <AutoCompleteTextView
-            android:id="@+id/editModel"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editMake"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Make"
+                android:importantForAutofill="no"
+                android:inputType="textCapWords"
+                android:paddingVertical="12dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Model"
-            android:importantForAutofill="no"
-            android:inputType="textCapWords" />
+            android:layout_marginTop="4dp"
+            app:boxBackgroundColor="@color/vintage_off_white"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false">
 
-        <EditText
-            android:id="@+id/editYear"
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/editModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Model"
+                android:importantForAutofill="no"
+                android:inputType="textCapWords"
+                android:paddingVertical="12dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Year"
-            android:importantForAutofill="no"
-            android:inputType="number" />
+            android:layout_marginTop="4dp"
+            app:boxBackgroundColor="@color/vintage_off_white"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editYear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Year"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:paddingVertical="12dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnAddVehicle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="Add Vehicle" />
 
     </LinearLayout>
